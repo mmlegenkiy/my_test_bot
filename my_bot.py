@@ -1,7 +1,12 @@
+# https://t.me/MAX_9_test_bot
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 import asyncio
-from TOKEN import TOKEN
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+BOT_TOKEN = os.getenv("TOKEN")
 
 # Команда /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -28,8 +33,6 @@ async def remind(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Основна функція запуску бота
 def main():
-    BOT_TOKEN = TOKEN
-
     app = ApplicationBuilder().token(BOT_TOKEN).build()
 
     app.add_handler(CommandHandler("start", start))
